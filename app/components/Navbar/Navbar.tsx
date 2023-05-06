@@ -1,10 +1,14 @@
-import Container from '../Container'
+import Container from '@/app/components/Container'
+import Logo from '@/app/components/Navbar/Logo'
+import Search from '@/app/components/Navbar/Search'
+import UserMenu from '@/app/components/Navbar/UserMenu'
+import { SafeUser } from '@/app/types'
 
-import Logo from './Logo'
-import Search from './Search'
-import UserMenu from './UserMenu'
+interface NavbarProps {
+  currentUser?: SafeUser | null
+}
 
-const Navbar = () => {
+const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   return (
     <div className="fixed z-10 w-full bg-white shadow-sm">
       <div className="border-b py-4">
@@ -12,7 +16,7 @@ const Navbar = () => {
           <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
             <Logo />
             <Search />
-            <UserMenu />
+            <UserMenu currentUser={currentUser} />
           </div>
         </Container>
       </div>
