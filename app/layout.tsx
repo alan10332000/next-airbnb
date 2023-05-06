@@ -1,5 +1,6 @@
 import { Nunito } from 'next/font/google'
 
+import getCurrentUser from '@/app/actions/getCurrentUser'
 import LoginModal from '@/app/components/Modal/LoginModal'
 import RegisterModal from '@/app/components/Modal/RegisterModal'
 import Navbar from '@/app/components/Navbar/Navbar'
@@ -15,14 +16,16 @@ export const metadata = {
   description: 'Welcome to Airbnb. Where to next?',
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const currentUser = await getCurrentUser()
+
   return (
     <html lang="en">
       <body className={font.className}>
         <ToasterProvider />
         <LoginModal />
         <RegisterModal />
-        <Navbar />
+        <Navbar currentUser={currentUser} />
         {children}
       </body>
     </html>
