@@ -71,7 +71,7 @@ const RegisterModal = () => {
     <div className="mt-3 flex flex-col gap-4">
       <hr />
       <Button outline label="Continue with Google" icon={FcGoogle} onClick={() => {}} />
-      <Button outline label="Continue with Github" icon={AiFillGithub} onClick={() => {}} />
+      <Button outline label="Continue with GitHub" icon={AiFillGithub} onClick={() => {}} />
       <div className="mt-4 text-center font-light text-neutral-500">
         <p>
           Already have an account?
