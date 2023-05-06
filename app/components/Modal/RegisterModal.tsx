@@ -7,12 +7,10 @@ import { toast } from 'react-hot-toast'
 import { AiFillGithub } from 'react-icons/ai'
 import { FcGoogle } from 'react-icons/fc'
 
-import Button from '../Button'
-import Heading from '../Heading'
-import Input from '../Input/Input'
-
-import Modal from './Modal'
-
+import Button from '@/app/components/Button'
+import Heading from '@/app/components/Heading'
+import Input from '@/app/components/Input/Input'
+import Modal from '@/app/components/Modal/Modal'
 import useRegisterModal from '@/app/hooks/useRegisterModal'
 
 const RegisterModal = () => {
