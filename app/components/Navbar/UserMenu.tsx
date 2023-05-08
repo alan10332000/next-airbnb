@@ -8,6 +8,7 @@ import Avatar from '@/app/components/Avatar'
 import MenuItem from '@/app/components/Navbar/MenuItem'
 import useLoginModal from '@/app/hooks/useLoginModal'
 import useRegisterModal from '@/app/hooks/useRegisterModal'
+import useRentModal from '@/app/hooks/useRentModal'
 import { SafeUser } from '@/app/types'
 
 interface UserMenuProps {
@@ -17,18 +18,24 @@ interface UserMenuProps {
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const loginModal = useLoginModal()
   const registerModal = useRegisterModal()
+  const rentModal = useRentModal()
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value)
   }, [])
 
+  const onRent = useCallback(() => {
+    if (!currentUser) return loginModal.onOpen()
+    rentModal.onOpen()
+  }, [loginModal, rentModal, currentUser])
+
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         <div
           className="hidden cursor-pointer rounded-full px-4 py-3 text-sm font-semibold transition hover:bg-neutral-100 md:block"
-          onClick={() => {}}
+          onClick={onRent}
         >
           Airbnb your home
         </div>
@@ -53,7 +60,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 <MenuItem label="My favorites" onClick={() => {}} />
                 <MenuItem label="My reservations" onClick={() => {}} />
                 <MenuItem label="My properties" onClick={() => {}} />
-                <MenuItem label="Airbnb your home" onClick={() => {}} />
+                <MenuItem label="Airbnb your home" onClick={rentModal.onOpen} />
                 <hr />
                 <MenuItem label="Logout" onClick={() => signOut()} />
               </>
