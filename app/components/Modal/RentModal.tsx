@@ -9,6 +9,7 @@ import CategoryInput from '@/app/components/Input/CategoryInput'
 import Counter from '@/app/components/Input/Counter'
 import CountrySelect from '@/app/components/Input/CountrySelect'
 import ImageUpload from '@/app/components/Input/ImageUpload'
+import Input from '@/app/components/Input/Input'
 import Modal from '@/app/components/Modal/Modal'
 import { categories } from '@/app/components/Navbar/Categories'
 import useRentModal from '@/app/hooks/useRentModal'
@@ -42,9 +43,9 @@ const RentModal = () => {
       roomCount: 1,
       bathroomCount: 1,
       imageSrc: '',
-      price: 1,
       title: '',
       description: '',
+      price: 1,
     },
   })
 
@@ -154,6 +155,17 @@ const RentModal = () => {
       <div className="flex flex-col gap-8">
         <Heading title="Add a photo of your place" subtitle="Show guests what your place looks like!" />
         <ImageUpload onChange={(value) => setCustomValue('imageSrc', value)} value={imageSrc} />
+      </div>
+    )
+  }
+
+  if (step === STEPS.DESCRIPTION) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading title="How would you describe your place?" subtitle="Short and sweet works best!" />
+        <Input id="title" label="Title" disabled={isLoading} register={register} errors={errors} required />
+        <hr />
+        <Input id="description" label="Description" disabled={isLoading} register={register} errors={errors} required />
       </div>
     )
   }
