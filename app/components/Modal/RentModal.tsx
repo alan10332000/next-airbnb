@@ -8,6 +8,7 @@ import Heading from '@/app/components/Heading'
 import CategoryInput from '@/app/components/Input/CategoryInput'
 import Counter from '@/app/components/Input/Counter'
 import CountrySelect from '@/app/components/Input/CountrySelect'
+import ImageUpload from '@/app/components/Input/ImageUpload'
 import Modal from '@/app/components/Modal/Modal'
 import { categories } from '@/app/components/Navbar/Categories'
 import useRentModal from '@/app/hooks/useRentModal'
@@ -16,7 +17,7 @@ enum STEPS {
   CATEGORY = 0,
   LOCATION = 1,
   INFO = 2,
-  IMAGES = 3,
+  IMAGE = 3,
   DESCRIPTION = 4,
   PRICE = 5,
 }
@@ -144,6 +145,15 @@ const RentModal = () => {
           title="Bathrooms"
           subtitle="How many bathrooms do you have?"
         />
+      </div>
+    )
+  }
+
+  if (step === STEPS.IMAGE) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading title="Add a photo of your place" subtitle="Show guests what your place looks like!" />
+        <ImageUpload onChange={(value) => setCustomValue('imageSrc', value)} value={imageSrc} />
       </div>
     )
   }
