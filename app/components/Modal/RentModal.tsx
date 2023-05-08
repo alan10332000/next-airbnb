@@ -1,10 +1,12 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import { useState, useMemo } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
 import Heading from '@/app/components/Heading'
 import CategoryInput from '@/app/components/Input/CategoryInput'
+import CountrySelect from '@/app/components/Input/CountrySelect'
 import Modal from '@/app/components/Modal/Modal'
 import { categories } from '@/app/components/Navbar/Categories'
 import useRentModal from '@/app/hooks/useRentModal'
@@ -51,6 +53,14 @@ const RentModal = () => {
   const bathroomCount = watch('bathroomCount')
   const imageSrc = watch('imageSrc')
 
+  const Map = useMemo(
+    () =>
+      dynamic(() => import('@/app/components/Map'), {
+        ssr: false,
+      }),
+    []
+  )
+
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
       shouldDirty: true,
@@ -67,7 +77,9 @@ const RentModal = () => {
     setStep((value) => value + 1)
   }
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {}
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    if (step !== STEPS.PRICE) return onNext()
+  }
 
   const actionLabel = useMemo(() => {
     if (step === STEPS.PRICE) return 'Create'
@@ -96,6 +108,16 @@ const RentModal = () => {
       </div>
     </div>
   )
+
+  if (step === STEPS.LOCATION) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading title="Where is your place located?" subtitle="Help guests find you!" />
+        <CountrySelect value={location} onChange={(value) => setCustomValue('location', value)} />
+        <Map center={location?.latlng} />
+      </div>
+    )
+  }
 
   return (
     <Modal
