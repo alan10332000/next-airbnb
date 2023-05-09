@@ -2,6 +2,7 @@
 
 import axios from 'axios'
 import { differenceInDays, eachDayOfInterval } from 'date-fns'
+import { useRouter } from 'next/navigation'
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { Range } from 'react-date-range'
 import { toast } from 'react-hot-toast'
@@ -29,6 +30,7 @@ interface ListingClientProps {
 }
 
 const ListingClient: React.FC<ListingClientProps> = ({ listing, reservations = [], currentUser }) => {
+  const router = useRouter()
   const loginModal = useLoginModal()
   const [isLoading, setIsLoading] = useState(false)
   const [totalPrice, setTotalPrice] = useState(listing.price)
@@ -67,13 +69,14 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing, reservations = [
 
       toast.success('Listing reserved!')
       setDateRange(initialDateRange)
+      router.push('/trips')
     } catch (error) {
       console.log('error', error)
       toast.error('Something went wrong!')
     } finally {
       setIsLoading(false)
     }
-  }, [totalPrice, dateRange, listing?.id, currentUser, loginModal])
+  }, [totalPrice, dateRange, listing?.id, router, currentUser, loginModal])
 
   useEffect(() => {
     if (dateRange.startDate && dateRange.endDate) {
