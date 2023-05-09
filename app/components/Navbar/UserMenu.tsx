@@ -56,18 +56,56 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           <div className="flex cursor-pointer flex-col">
             {currentUser ? (
               <>
-                <MenuItem label="My trips" onClick={() => {}} />
-                <MenuItem label="My favorites" onClick={() => {}} />
-                <MenuItem label="My reservations" onClick={() => {}} />
-                <MenuItem label="My properties" onClick={() => {}} />
-                <MenuItem label="Airbnb your home" onClick={rentModal.onOpen} />
+                <MenuItem
+                  label="My trips"
+                  onClick={() => {
+                    toggleOpen()
+                  }}
+                />
+                <MenuItem
+                  label="My favorites"
+                  onClick={() => {
+                    toggleOpen()
+                  }}
+                />
+                <MenuItem
+                  label="My reservations"
+                  onClick={() => {
+                    toggleOpen()
+                  }}
+                />
+                <MenuItem
+                  label="My properties"
+                  onClick={() => {
+                    toggleOpen()
+                  }}
+                />
+                <MenuItem
+                  label="Airbnb your home"
+                  onClick={() => {
+                    rentModal.onOpen()
+                    toggleOpen()
+                  }}
+                />
                 <hr />
                 <MenuItem label="Logout" onClick={() => signOut()} />
               </>
             ) : (
               <>
-                <MenuItem label="Login" onClick={loginModal.onOpen} />
-                <MenuItem label="Sign up" onClick={registerModal.onOpen} />
+                <MenuItem
+                  label="Login"
+                  onClick={() => {
+                    loginModal.onOpen()
+                    toggleOpen()
+                  }}
+                />
+                <MenuItem
+                  label="Sign up"
+                  onClick={() => {
+                    registerModal.onOpen()
+                    toggleOpen()
+                  }}
+                />
               </>
             )}
           </div>
