@@ -1,8 +1,10 @@
 'use client'
 
+import axios from 'axios'
 import { differenceInDays, eachDayOfInterval } from 'date-fns'
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { Range } from 'react-date-range'
+import { toast } from 'react-hot-toast'
 
 import Container from '@/app/components/Container'
 import ListingHead from '@/app/components/Listing/ListingHead'
@@ -51,9 +53,27 @@ const ListingClient: React.FC<ListingClientProps> = ({ listing, reservations = [
     return categories.find((items) => items.label === listing.category)
   }, [listing.category])
 
-  const onCreateReservation = useCallback(() => {
-    if (!currentUser) return loginModal.onOpen()
-  }, [currentUser, loginModal])
+  const onCreateReservation = useCallback(async () => {
+    try {
+      if (!currentUser) return loginModal.onOpen()
+      setIsLoading(true)
+
+      await axios.post('/api/reservations', {
+        totalPrice,
+        startDate: dateRange.startDate,
+        endDate: dateRange.endDate,
+        listingId: listing?.id,
+      })
+
+      toast.success('Listing reserved!')
+      setDateRange(initialDateRange)
+    } catch (error) {
+      console.log('error', error)
+      toast.error('Something went wrong!')
+    } finally {
+      setIsLoading(false)
+    }
+  }, [totalPrice, dateRange, listing?.id, currentUser, loginModal])
 
   useEffect(() => {
     if (dateRange.startDate && dateRange.endDate) {
