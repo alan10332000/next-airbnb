@@ -74,6 +74,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 <MenuItem
                   label="My reservations"
                   onClick={() => {
+                    router.push('/reservations')
                     toggleOpen()
                   }}
                 />
