@@ -1,11 +1,15 @@
 import getCurrentUser from '@/app/actions/getCurrentUser'
-import getListings from '@/app/actions/getListings'
+import getListings, { IListingsParams } from '@/app/actions/getListings'
 import Container from '@/app/components/Container'
 import EmptyState from '@/app/components/EmptyState'
 import ListingCard from '@/app/components/Listing/ListingCard'
 
-const Index = async () => {
-  const listings = await getListings()
+interface HomeProps {
+  searchParams: IListingsParams
+}
+
+const Home = async ({ searchParams }: HomeProps) => {
+  const listings = await getListings(searchParams)
   const currentUser = await getCurrentUser()
 
   if (listings.length === 0) {
@@ -23,4 +27,4 @@ const Index = async () => {
   )
 }
 
-export default Index
+export default Home
