@@ -13,7 +13,7 @@ export async function POST(request: Request) {
   const body = await request.json()
   const { title, description, imageSrc, category, roomCount, bathroomCount, guestCount, location, price } = body
 
-  Object.keys(body).forEach((value: any) => {
+  Object.keys(body).forEach((value) => {
     if (!body[value]) {
       NextResponse.error()
     }
