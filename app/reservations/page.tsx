@@ -1,4 +1,3 @@
-
 import getCurrentUser from '@/app/actions/getCurrentUser'
 import getReservations from '@/app/actions/getReservations'
 import EmptyState from '@/app/components/EmptyState'
