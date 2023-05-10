@@ -28,9 +28,9 @@ const TripsClient: React.FC<TripsClientProps> = ({ reservations, currentUser }) 
 
         toast.success('Reservation cancelled')
         router.refresh()
-      } catch (error: any) {
+      } catch (error) {
         console.log('error', error)
-        toast.error(error?.response?.data?.error)
+        toast.error('Something went wrong!')
       } finally {
         setDeletingId('')
       }
