@@ -7,6 +7,7 @@ interface InputProps {
   id: string
   label: string
   type?: string
+  pattern?: RegExp
   disabled?: boolean
   formatPrice?: boolean
   required?: boolean
@@ -18,6 +19,7 @@ const Input: React.FC<InputProps> = ({
   id,
   label,
   type = 'text',
+  pattern,
   disabled,
   formatPrice,
   register,
@@ -30,7 +32,7 @@ const Input: React.FC<InputProps> = ({
       <input
         id={id}
         disabled={disabled}
-        {...register(id, { required })}
+        {...register(id, { required, pattern })}
         placeholder=" "
         type={type}
         className={`peer w-full rounded-md border-2 bg-white p-4 pt-6 font-light outline-none transition disabled:cursor-not-allowed disabled:opacity-70

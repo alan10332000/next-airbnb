@@ -57,7 +57,15 @@ const RegisterModal = () => {
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading title="Welcome to Airbnb" subtitle="Create an account!" />
-      <Input id="email" label="Email" disabled={isLoading} register={register} errors={errors} required />
+      <Input
+        id="email"
+        label="Email"
+        disabled={isLoading}
+        register={register}
+        pattern={/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g}
+        errors={errors}
+        required
+      />
       <Input id="name" label="Name" disabled={isLoading} register={register} errors={errors} required />
       <Input
         id="password"
@@ -65,6 +73,7 @@ const RegisterModal = () => {
         type="password"
         disabled={isLoading}
         register={register}
+        pattern={/^.{6,}$/}
         errors={errors}
         required
       />
