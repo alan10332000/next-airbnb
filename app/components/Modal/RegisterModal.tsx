@@ -60,6 +60,7 @@ const RegisterModal = () => {
       <Input
         id="email"
         label="Email"
+        type="email"
         disabled={isLoading}
         register={register}
         pattern={/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g}
