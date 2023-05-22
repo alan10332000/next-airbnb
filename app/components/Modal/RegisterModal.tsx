@@ -57,6 +57,8 @@ const RegisterModal = () => {
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading title="Welcome to Airbnb" subtitle="Create an account!" />
+      <Input id="name" label="Name" disabled={isLoading} register={register} errors={errors} required />
+      {errors?.name && <div className="text-rose-500">Please enter a name.</div>}
       <Input
         id="email"
         label="Email"
@@ -67,7 +69,7 @@ const RegisterModal = () => {
         errors={errors}
         required
       />
-      <Input id="name" label="Name" disabled={isLoading} register={register} errors={errors} required />
+      {errors?.email && <div className="text-rose-500">Please enter a valid email format.</div>}
       <Input
         id="password"
         label="Password"
@@ -78,6 +80,7 @@ const RegisterModal = () => {
         errors={errors}
         required
       />
+      {errors?.password && <div className="text-rose-500">Please enter a password with at least 6 characters.</div>}
     </div>
   )
 

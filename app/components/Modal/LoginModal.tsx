@@ -76,6 +76,7 @@ const LoginModal = () => {
         errors={errors}
         required
       />
+      {errors?.email && <div className="text-rose-500">Please enter a valid email format.</div>}
       <Input
         id="password"
         label="Password"
@@ -86,6 +87,7 @@ const LoginModal = () => {
         errors={errors}
         required
       />
+      {errors?.password && <div className="text-rose-500">Please enter a password with at least 6 characters.</div>}
     </div>
   )
 
