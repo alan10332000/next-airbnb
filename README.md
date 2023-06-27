@@ -14,6 +14,7 @@ This is a repository for Airbnb Clone with Next.js: Next.js 13, React, Tailwind 
 - Client form validation and handling using react-hook-form
 - Server error handling using react-toast
 - Calendars with react-date-range
+- State management using Zustand
 - Page loading state
 - Page empty state
 - Booking / Reservation system
