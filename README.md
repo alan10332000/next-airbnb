@@ -1,12 +1,12 @@
 # Airbnb Clone with Next.js
 
-This is a repository for Airbnb Clone with Next.js
+This is a repository for Airbnb Clone with Next.js: Next.js 13, React, Tailwind CSS, Prisma, MongoDB, NextAuth.
 
 ## Features 🚀
 
 - Tailwind CSS design
-- Tailwind CSS animations and effects
-- Full responsiveness
+- Tailwind CSS animations and transition effects
+- Full responsiveness for all devices
 - Credential authentication using NextAuth
 - Google authentication using NextAuth
 - GitHub authentication using NextAuth
@@ -26,10 +26,10 @@ This is a repository for Airbnb Clone with Next.js
 - Favorites system
 - Shareable URL filters
   - Lets say you select a category, location and date range, you will be able to share URL with a logged out friend in another browser and they will see the same results
-- How to write POST and DELETE routes in route handlers (app/api)
-- How to fetch data in server react components by directly accessing database
-- How to handle files like error.tsx and loading.tsx which are new Next 13 template files to unify loading and error handling
-- How to handle relations between Server and Child components
+- Write POST and DELETE routes in route handlers (app/api)
+- Fetch data in server React components by directly accessing database
+- Handle files like error.tsx and loading.tsx which are new Next 13 template files to unify loading and error handling
+- Handle relations between Server and Child components
 
 ### Prerequisites
 
